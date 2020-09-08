@@ -1,0 +1,9 @@
+*.zip
+classes.txt
+*.yml
+
+.idea/
+dataset/
+training_set/
+val_set/
+test_set/
