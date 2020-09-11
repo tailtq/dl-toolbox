@@ -2,7 +2,7 @@ import glob
 
 
 if __name__ == '__main__':
-    summary_paths = ['training_set', 'val_set', 'test_set']
+    summary_paths = ['training_set', 'val_set']
 
     for path in summary_paths:
         files = glob.glob('{}/*.JPG'.format(path))

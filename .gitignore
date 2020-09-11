@@ -1,8 +1,11 @@
 *.zip
 classes.txt
 *.yml
+*.yaml
 
 .idea/
+__pycache__/
+data/
 dataset/
 training_set/
 val_set/
