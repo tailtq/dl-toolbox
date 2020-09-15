@@ -44,7 +44,7 @@ def convert_annotation(path, classes):
 
 if __name__ == '__main__':
     classes = ['cable', 'electric post', 'circle cable']
-    files = glob.glob('resized_data/*.xml')
+    files = glob.glob('training_set/*.xml')
 
     for file_path in files:
         convert_annotation(file_path, classes)
