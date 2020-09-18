@@ -93,5 +93,5 @@ def visualize_frames(out_dir, video_path):
 if __name__ == '__main__':
     video_path = '/Volumes/tailtq-disk/camera-data/GH010935_1597626404510.MP4'
     out_dir = './data'
-    # extract_frames_from_video(video_path, out_dir)
-    visualize_frames(out_dir, video_path)
+    extract_frames_from_video(video_path, out_dir, save_after=20)
+    # visualize_frames(out_dir, video_path)

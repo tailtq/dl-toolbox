@@ -38,7 +38,7 @@ if __name__ == '__main__':
     val_percent = 0.2
     test_percent = 0.0
 
-    directory = 'cable_recording_capture'
+    directory = 'training_set'
     # training_set_dir = 'training_set'
     val_set_dir = 'val_set'
     test_set_dir = 'test_set'

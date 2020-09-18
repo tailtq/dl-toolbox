@@ -5,6 +5,7 @@ classes.txt
 README_project.md
 
 .idea/
+.ipynb_checkpoints/
 __pycache__/
 data/
 dataset/
