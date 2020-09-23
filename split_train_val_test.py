@@ -38,17 +38,14 @@ if __name__ == '__main__':
     val_percent = 0.2
     test_percent = 0.0
 
-    directory = 'training_set'
-    # training_set_dir = 'training_set'
+    directory = 'road_encroachment'
+    training_set_dir = 'training_set'
     val_set_dir = 'val_set'
     test_set_dir = 'test_set'
 
     if round(training_percent + val_percent + test_percent, 5) != 1:
         print('Invalid percentages')
         exit()
-
-    if not os.path.exists('training_set'):
-        os.mkdir('training_set')
 
     if not os.path.exists(val_set_dir):
         os.mkdir(val_set_dir)
@@ -61,3 +58,4 @@ if __name__ == '__main__':
 
     files = separate_dataset(files, total, val_percent, val_set_dir)
     files = separate_dataset(files, total, test_percent, test_set_dir)
+    os.rename(directory, training_set_dir)
