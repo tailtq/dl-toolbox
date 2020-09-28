@@ -8,7 +8,4 @@ README_project.md
 .ipynb_checkpoints/
 __pycache__/
 data/
-dataset/
-training_set/
-val_set/
-test_set/
+yolov5/

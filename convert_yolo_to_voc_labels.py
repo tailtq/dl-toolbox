@@ -81,5 +81,5 @@ def start(dir_name):
 
 
 if __name__ == '__main__':
-    start('training_set')
-    start('val_set')
+    start('data/dataset/training_set')
+    start('data/dataset/val_set')

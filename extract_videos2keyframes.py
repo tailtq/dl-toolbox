@@ -23,7 +23,7 @@ def extract_frames_from_video(video_path, out_dir, frame_from=0, frame_to=None, 
     # initialize the pointer to the video file
     print('[INFO] Processing video %s ...' % video_path.split('/')[-1])
     cap = cv2.VideoCapture(video_path)
-    video_name = video_path.split('/')[-1].split('.')[0]
+    video_name = video_path.split('/')[-1].split('.mp4')[0]
     # Directory to store frames
     dirPath = os.path.join(out_dir, video_name)
     total_frames = cap.get(cv2.CAP_PROP_FRAME_COUNT)
@@ -91,7 +91,7 @@ def visualize_frames(out_dir, video_path):
 
 
 if __name__ == '__main__':
-    video_path = '/Volumes/tailtq-disk/camera-data/GH010935_1597626404510.MP4'
+    video_path = '/Volumes/tailtq-disk/09:58:59.199563.mp4'
     out_dir = './data'
-    extract_frames_from_video(video_path, out_dir, save_after=20)
+    extract_frames_from_video(video_path, out_dir, frame_from=0, frame_to=50000, save_after=20)
     # visualize_frames(out_dir, video_path)

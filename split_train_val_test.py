@@ -39,8 +39,8 @@ if __name__ == '__main__':
     test_percent = 0.0
 
     directory = 'road_encroachment'
-    training_set_dir = 'training_set'
-    val_set_dir = 'val_set'
+    training_set_dir = 'data/dataset/training_set'
+    val_set_dir = 'data/dataset/val_set'
     test_set_dir = 'test_set'
 
     if round(training_percent + val_percent + test_percent, 5) != 1:
@@ -58,4 +58,6 @@ if __name__ == '__main__':
 
     files = separate_dataset(files, total, val_percent, val_set_dir)
     files = separate_dataset(files, total, test_percent, test_set_dir)
-    os.rename(directory, training_set_dir)
+
+    if not os.path.exists(training_set_dir):
+        os.rename(directory, training_set_dir)

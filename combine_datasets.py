@@ -19,8 +19,8 @@ def combine(directories, destination):
             new_txt_link = destination + str(index) + '_' + filename + '.txt'
             new_img_link = destination + str(index) + '_' + filename + '.jpg'
 
-            shutil.copyfile(txt_link, new_txt_link)
-            shutil.copyfile(img_link, new_img_link)
+            shutil.move(txt_link, new_txt_link)
+            shutil.move(img_link, new_img_link)
 
 
 if __name__ == '__main__':
