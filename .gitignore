@@ -8,4 +8,6 @@ README_project.md
 .ipynb_checkpoints/
 __pycache__/
 data/
+coco/
+stuff_data/
 yolov5/
