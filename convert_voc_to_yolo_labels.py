@@ -21,7 +21,7 @@ def convert_annotation(path, classes):
     txt_file = path.split('.')[0] + '.txt'
 
     in_file = open(path)
-    out_file = open(txt_file, 'w')
+    out_file = open(txt_file, 'w+')
 
     tree = ET.parse(in_file)
     root = tree.getroot()
@@ -30,7 +30,7 @@ def convert_annotation(path, classes):
     h = int(size.find('height').text)
 
     for obj in root.iter('object'):
-        difficult = obj.find('difficult').text
+        difficult = obj.find('difficult').text if obj.find('difficult') else '0'
         cls = obj.find('name').text
         if cls not in classes or int(difficult) == 1:
             continue
@@ -43,8 +43,8 @@ def convert_annotation(path, classes):
 
 
 if __name__ == '__main__':
-    classes = ['cable', 'electric post', 'circle cable']
-    files = glob.glob('data/dataset/training_set/*.xml')
+    classes = ['head', 'head_2', 'mask', 'i']
+    files = glob.glob("/Users/tailtq/Downloads/face_mask/images/*.xml")
 
     for file_path in files:
         convert_annotation(file_path, classes)

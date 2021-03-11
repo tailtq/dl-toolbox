@@ -38,9 +38,9 @@ if __name__ == '__main__':
     val_percent = 0.2
     test_percent = 0.0
 
-    directory = 'road_encroachment'
-    training_set_dir = 'data/dataset/training_set'
-    val_set_dir = 'data/dataset/val_set'
+    directory = 'dataset/head_data'
+    training_set_dir = 'dataset/train'
+    val_set_dir = 'dataset/val'
     test_set_dir = 'test_set'
 
     if round(training_percent + val_percent + test_percent, 5) != 1:
@@ -61,3 +61,6 @@ if __name__ == '__main__':
 
     if not os.path.exists(training_set_dir):
         os.rename(directory, training_set_dir)
+    else:
+        files = glob.glob(f"{directory}/*.jpg")
+        move_files(files, training_set_dir)

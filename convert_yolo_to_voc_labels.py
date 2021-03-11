@@ -4,15 +4,16 @@ from xml.dom import minidom
 import xml.etree.cElementTree as ET
 
 CLASS_MAPPING = {
-    '0': 'cable',
-    '1': 'electric post',
-    '2': 'circle cable'
+    '0': 'head',
+    '1': 'head_2',
+    '2': 'mask'
 }
+img_extension = 'jpg'
 
 
 def create_root(file_prefix, width, height):
     root = ET.Element('annotations')
-    ET.SubElement(root, 'filename').text = '{}.jpg'.format(file_prefix)
+    ET.SubElement(root, 'filename').text = '{}.{}'.format(file_prefix, img_extension)
     ET.SubElement(root, 'folder').text = 'images'
     size = ET.SubElement(root, 'size')
     ET.SubElement(size, 'width').text = str(width)
@@ -48,7 +49,7 @@ def create_file(file_prefix, width, height, voc_labels):
 
 def read_file(file_path):
     file_prefix = file_path.split('.txt')[0]
-    img = Image.open('{}.jpg'.format(file_prefix))
+    img = Image.open('{}.{}'.format(file_prefix, img_extension))
 
     w, h = img.size
     with open(file_path, 'r') as file:
@@ -81,5 +82,4 @@ def start(dir_name):
 
 
 if __name__ == '__main__':
-    start('data/dataset/training_set')
-    start('data/dataset/val_set')
+    start('dataset/real-cases')
