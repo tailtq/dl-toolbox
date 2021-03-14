@@ -2,7 +2,7 @@ import cv2
 import glob
 
 
-files = glob.glob("dataset/head_data/*.jpg")
+files = sorted(glob.glob("dataset/obj_train_data/*.jpg"))
 
 IGNORED_CLASS_INDEX = 3
 
@@ -41,6 +41,7 @@ for file_path in files:
     print(file_path)
 
     text_path = file_path.replace(".jpg", ".txt")
+    text_path = text_path.replace(".png", ".txt")
 
     img = cv2.imread(file_path)
     bboxes, lines = read_n_parse_label(text_path, img.shape)

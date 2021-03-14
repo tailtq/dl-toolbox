@@ -4,7 +4,7 @@ import cv2
 from utils.object_recognition_common import predict_bboxes, load_model
 
 
-root_directory = "dataset/real-cases"
+root_directory = "unlabelled-real-cases"
 
 if __name__ == "__main__":
     model = load_model("face-mask-best.pt")

@@ -38,7 +38,7 @@ if __name__ == '__main__':
     val_percent = 0.2
     test_percent = 0.0
 
-    directory = 'dataset/head_data'
+    directory = 'dataset/obj_train_data'
     training_set_dir = 'dataset/train'
     val_set_dir = 'dataset/val'
     test_set_dir = 'test_set'

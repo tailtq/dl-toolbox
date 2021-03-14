@@ -43,8 +43,8 @@ def convert_annotation(path, classes):
 
 
 if __name__ == '__main__':
-    classes = ['head', 'head_2', 'mask', 'i']
-    files = glob.glob("/Users/tailtq/Downloads/face_mask/images/*.xml")
+    classes = ['head', 'head_2', 'mask', 'ignore']
+    files = glob.glob("kaggle-dataset/*.xml")
 
     for file_path in files:
         convert_annotation(file_path, classes)
