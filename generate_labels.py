@@ -4,12 +4,12 @@ import cv2
 from utils.object_recognition_common import predict_bboxes, load_model
 
 
-root_directory = "unlabelled-real-cases"
+root_directory = "data/test222"
 
 if __name__ == "__main__":
-    model = load_model("face-mask-best.pt")
+    model = load_model("best2.pt")
 
-    img_paths = sorted(glob.glob(f"{root_directory}/*.jpg"))
+    img_paths = sorted(glob.glob(f"{root_directory}/*.jpg") + glob.glob(f"{root_directory}/*.png"))
     # img_paths = list(filter(lambda img_path: not os.path.exists(img_path.replace(".jpg", ".txt")), img_paths))
     i = 0
     total_imgs = len(img_paths)
@@ -40,3 +40,4 @@ if __name__ == "__main__":
         stream = open(f"{root_directory}/{img_name}.txt", "w+")
         stream.write(text)
         stream.close()
+#  python ~/Code/machine-learning/labelImg/labelImg.py /Users/tailtq/Code/machine-learning/cable-detection/original-dataset-should-save /Users/tailtq/Code/machine-learning/cable-detection/original-dataset-should-save/classes.txt /Users/tailtq/Code/machine-learning/cable-detection/original-dataset-should-save

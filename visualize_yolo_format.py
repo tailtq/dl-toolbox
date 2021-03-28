@@ -4,8 +4,10 @@ import imutils
 
 from utils.dataset.yolo_util import get_yolo_img, read_classes_file, change_annotations_by_size, plot_annotations
 
-files = sorted(glob.glob('coco/vehicles/train/*.jpg'))
-classes = read_classes_file('coco/vehicles/classes.txt')
+files = sorted(glob.glob('original-dataset-should-save/*.jpg') +
+               glob.glob('original-dataset-should-save/*.jpeg') +
+               glob.glob('original-dataset-should-save/*.png'))
+classes = read_classes_file('/classes.txt')
 
 for file in files:
     img, annotations = get_yolo_img(file, classes)

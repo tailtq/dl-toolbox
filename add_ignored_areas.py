@@ -1,8 +1,10 @@
 import cv2
 import glob
 
-
-files = sorted(glob.glob("dataset/obj_train_data/*.jpg"))
+files = sorted(glob.glob("dataset/train/*.jpg") +
+               glob.glob("dataset/val/*.jpg") +
+               glob.glob("dataset/train/*.png") +
+               glob.glob("dataset/val/*.png"))
 
 IGNORED_CLASS_INDEX = 3
 

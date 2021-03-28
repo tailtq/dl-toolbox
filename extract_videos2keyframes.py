@@ -40,6 +40,7 @@ def extract_frames_from_video(video_path, out_dir, frame_from=0, frame_to=None, 
     while True:
         # grab the next frame
         ret, frame = cap.read()
+        frameID += 1
 
         # if the frame cannot be grabbed, then we have reached the end of the stream
         if not ret and frameID < total_frames:
@@ -47,7 +48,6 @@ def extract_frames_from_video(video_path, out_dir, frame_from=0, frame_to=None, 
         if not ret or (frame_to and frameID > frame_to):
             break
 
-        frameID += 1
         if frameID % save_after == 0:
             save_frame(frameID, frame, dirPath, double_screen)
 
@@ -91,7 +91,9 @@ def visualize_frames(out_dir, video_path):
 
 
 if __name__ == '__main__':
-    video_path = '/Volumes/tailtq-disk/09:58:59.199563.mp4'
+    video_paths = ['trim_2.mp4', 'trim_3.mp4', 'trim_4.mp4', 'trim_5.mp4', 'trim_6.mp4']
     out_dir = './data'
-    extract_frames_from_video(video_path, out_dir, frame_from=0, frame_to=50000, save_after=20)
+
+    for video_path in video_paths:
+        extract_frames_from_video(video_path, out_dir, frame_from=0, frame_to=50000, save_after=30)
     # visualize_frames(out_dir, video_path)
