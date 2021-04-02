@@ -47,7 +47,7 @@ def predict_bboxes(img, model, resized_width):
     _, _, new_height, new_width = img.size()
 
     preds = model(img)[0]
-    preds = non_max_suppression(preds, 0.4, 0.5)
+    preds = non_max_suppression(preds, 0.4, 0.5, agnostic=True)
     result = np.array([], dtype=np.float32)
 
     # based on YOLOv5
@@ -78,3 +78,22 @@ def draw_bbox(coordinates, img, classes):
         cv2.putText(img, classes[coordinate[5]], tuple(coordinate[0:2].tolist()), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
 
     return img
+
+
+def parse_yolo_format(txt_file, img_shape):
+    height, width = img_shape[:2]
+    lines = open(txt_file, "r").readlines()
+    coordinates = []
+
+    for line in lines:
+        c, x, y, w, h = line.split(" ")
+        x, y, w, h = float(x), float(y), float(w), float(h)
+        x1, y1 = x - w / 2, y - h / 2
+        x2, y2 = x1 + w, y1 + h
+
+        coordinates.append([
+            c, int(x1 * width), int(y1 * height), int(x2 * width), int(y2 * height)
+        ])
+
+    return coordinates
+

@@ -30,6 +30,13 @@ def get_all_images(directory):
     return links
 
 
+def get_file_name_by_img(img_path: str):
+    for format in ['jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG']:
+        img_path = img_path.replace(format, "txt")
+
+    return img_path
+
+
 def find_matching_index(list1, list2):
     inverse_index = {element: index for index, element in enumerate(list1)}
 

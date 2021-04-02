@@ -14,8 +14,7 @@ def add_white_spot(img, tl: list, br: list):
     return img
 
 
-def draw_bounding_box(img, tl: list, br: list):
-    print(tl, br)
+def draw_bounding_box(img, tl: tuple, br: tuple):
     cv2.rectangle(img, tl, br, (0, 0, 255), 2)
 
 
@@ -38,33 +37,33 @@ def read_n_parse_label(link, img_shape):
 
     return bboxes, lines
 
+if __name__ == "__main__":
+    for file_path in files:
+        print(file_path)
 
-for file_path in files:
-    print(file_path)
+        text_path = file_path.replace(".jpg", ".txt")
+        text_path = text_path.replace(".png", ".txt")
 
-    text_path = file_path.replace(".jpg", ".txt")
-    text_path = text_path.replace(".png", ".txt")
+        img = cv2.imread(file_path)
+        bboxes, lines = read_n_parse_label(text_path, img.shape)
 
-    img = cv2.imread(file_path)
-    bboxes, lines = read_n_parse_label(text_path, img.shape)
+        for box in bboxes:
+            if box[0] == IGNORED_CLASS_INDEX:
+                img = add_white_spot(img, box[1], box[2])
 
-    for box in bboxes:
-        if box[0] == IGNORED_CLASS_INDEX:
-            img = add_white_spot(img, box[1], box[2])
+        removed_indices = []
 
-    removed_indices = []
+        for i, line in enumerate(lines):
+            if line[0] == IGNORED_CLASS_INDEX:
+                removed_indices.append(i)
 
-    for i, line in enumerate(lines):
-        if line[0] == IGNORED_CLASS_INDEX:
-            removed_indices.append(i)
+            lines[i] = " ".join([str(e) for e in line])
 
-        lines[i] = " ".join([str(e) for e in line])
+        for i in sorted(removed_indices, reverse=True):
+            del lines[i]
 
-    for i in sorted(removed_indices, reverse=True):
-        del lines[i]
+        cv2.imwrite(file_path, img)
 
-    cv2.imwrite(file_path, img)
-
-    f = open(text_path, "w+")
-    f.write("\n".join(lines))
-    f.close()
+        f = open(text_path, "w+")
+        f.write("\n".join(lines))
+        f.close()

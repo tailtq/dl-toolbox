@@ -27,12 +27,12 @@ def extract_frames_from_video(video_path, out_dir, frame_from=0, frame_to=None, 
     # Directory to store frames
     dirPath = os.path.join(out_dir, video_name)
     total_frames = cap.get(cv2.CAP_PROP_FRAME_COUNT)
-    print(total_frames)
+    print(f"Total frames: {total_frames}")
 
     if os.path.isdir(dirPath):
         shutil.rmtree(dirPath)
 
-    os.mkdir(dirPath)
+    os.makedirs(dirPath, exist_ok=True)
 
     # loop over frames from the video file stream
     frameID = frame_from
@@ -91,9 +91,9 @@ def visualize_frames(out_dir, video_path):
 
 
 if __name__ == '__main__':
-    video_paths = ['trim_2.mp4', 'trim_3.mp4', 'trim_4.mp4', 'trim_5.mp4', 'trim_6.mp4']
+    video_paths = ['/home/tailtq/Videos/ptz-camera.mp4']
     out_dir = './data'
 
     for video_path in video_paths:
-        extract_frames_from_video(video_path, out_dir, frame_from=0, frame_to=50000, save_after=30)
+        extract_frames_from_video(video_path, out_dir, frame_from=0, frame_to=500000, save_after=20)
     # visualize_frames(out_dir, video_path)

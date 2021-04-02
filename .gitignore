@@ -15,3 +15,7 @@ dataset/
 head_data_2/
 original-dataset-should-save/
 unlabelled-data/
+
+dataset2.zip
+*.pt
+

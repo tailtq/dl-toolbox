@@ -38,7 +38,7 @@ if __name__ == "__main__":
     val_percent = 0.2
     test_percent = 0.0
 
-    directory = "original-dataset"
+    directory = "original-dataset-should-save"
     patterns = [
         f"{directory}/273271,*.jpg",
         f"{directory}/mak*.png",
@@ -46,7 +46,10 @@ if __name__ == "__main__":
         f"{directory}/custom_qtai*.png",
         f"{directory}/custom_qtai*.jpeg",
         f"{directory}/custom_qtai*.jpg",
-        f"{directory}/custom_cctv*.jpg",
+        f"{directory}/custom_cctv1*.jpg",
+        f"{directory}/custom_cctv2*.jpg",
+        f"{directory}/custom_cctv3*.jpg",
+        f"{directory}/custom_cctv4*.jpg",
         f"{directory}/*.jpg",
     ]
 
