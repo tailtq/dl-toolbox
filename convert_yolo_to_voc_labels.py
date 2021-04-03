@@ -82,4 +82,4 @@ def start(dir_name):
 
 
 if __name__ == '__main__':
-    start('dataset/real-cases')
+    start('../yolov5/dataset/real-cases')

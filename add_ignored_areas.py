@@ -1,10 +1,10 @@
 import cv2
 import glob
 
-files = sorted(glob.glob("dataset/train/*.jpg") +
-               glob.glob("dataset/val/*.jpg") +
-               glob.glob("dataset/train/*.png") +
-               glob.glob("dataset/val/*.png"))
+files = sorted(glob.glob("../yolov5/dataset/train/*.jpg") +
+               glob.glob("../yolov5/dataset/val/*.jpg") +
+               glob.glob("../yolov5/dataset/train/*.png") +
+               glob.glob("../yolov5/dataset/val/*.png"))
 
 IGNORED_CLASS_INDEX = 3
 
@@ -14,8 +14,8 @@ def add_white_spot(img, tl: list, br: list):
     return img
 
 
-def draw_bounding_box(img, tl: tuple, br: tuple):
-    cv2.rectangle(img, tl, br, (0, 0, 255), 2)
+def draw_bounding_box(img, tl: tuple, br: tuple, color: tuple = (0, 0, 255)):
+    cv2.rectangle(img, tl, br, color, 2)
 
 
 def read_n_parse_label(link, img_shape):
@@ -36,6 +36,7 @@ def read_n_parse_label(link, img_shape):
         lines[i] = line
 
     return bboxes, lines
+
 
 if __name__ == "__main__":
     for file_path in files:

@@ -53,9 +53,9 @@ if __name__ == "__main__":
         f"{directory}/*.jpg",
     ]
 
-    training_set_dir = "dataset/train"
-    val_set_dir = "dataset/val"
-    test_set_dir = "dataset/test"
+    training_set_dir = "../yolov5/dataset/train"
+    val_set_dir = "../yolov5/dataset/val"
+    test_set_dir = "../yolov5/dataset/test"
 
     if round(training_percent + val_percent + test_percent, 5) != 1:
         print("Invalid percentages")
