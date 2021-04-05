@@ -9,10 +9,11 @@ import pathlib
 
 
 files = get_all_images("dataset/val")
+# files = ["/home/william/Code/machine-learning/dl-toolbox/dataset/val/273271,1ca7500098255e6f.jpg"]
 model = load_model("face-mask-best-no-mosaic.pt")
 classes = ["head", "head_2", "mask"]
 conf = {
-    "IMG_RATIO": 0.02,
+    "IMG_RATIO": 0.035,
     "IOU_RATE": 0.5,
 }
 
@@ -21,6 +22,7 @@ for file in files:
     txt_file = get_file_name_by_img(file)
 
     bboxes, orig_img, _ = predict_bboxes(img, model, 416)
+    print(len(bboxes))
     gt_bboxes = parse_yolo_format(txt_file, orig_img.shape)
     height, width = orig_img.shape[:2]
 
@@ -50,7 +52,7 @@ for file in files:
             is_misdetected = True
 
             text = f"{classes[int(gt_bbox[0])]} - {classes[int(gt_bbox[5][1])]}" if gt_bbox[5][0] == "wrong_class" else "None"
-            cv2.putText(orig_img, text, (gt_bbox[1], gt_bbox[2]), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0))
+            cv2.putText(orig_img, text, (gt_bbox[1], gt_bbox[2]), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 255, 0), 2)
             draw_bounding_box(orig_img, (gt_bbox[1], gt_bbox[2]), (gt_bbox[3], gt_bbox[4]))
 
             if gt_bbox[5][0] == "wrong_class":
@@ -61,7 +63,7 @@ for file in files:
 
     print(f"Image: {pathlib.Path(file).absolute()}")
 
-    orig_img = imutils.resize(orig_img, width=1024)
+    orig_img = imutils.resize(orig_img, width=416)
     cv2.imshow("test", orig_img)
     key = cv2.waitKey(-1)
 
