@@ -10,7 +10,7 @@ import pathlib
 
 files = get_all_images("dataset/val")
 # files = ["/home/william/Code/machine-learning/dl-toolbox/dataset/val/273271,1ca7500098255e6f.jpg"]
-model = load_model("face-mask-best-no-mosaic.pt")
+model = load_model("best-2.pt")
 classes = ["head", "head_2", "mask"]
 conf = {
     "IMG_RATIO": 0.035,
@@ -52,7 +52,7 @@ for file in files:
             is_misdetected = True
 
             text = f"{classes[int(gt_bbox[0])]} - {classes[int(gt_bbox[5][1])]}" if gt_bbox[5][0] == "wrong_class" else "None"
-            cv2.putText(orig_img, text, (gt_bbox[1], gt_bbox[2]), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 255, 0), 2)
+            cv2.putText(orig_img, text, (gt_bbox[1], gt_bbox[2]), cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 255, 0), 2)
             draw_bounding_box(orig_img, (gt_bbox[1], gt_bbox[2]), (gt_bbox[3], gt_bbox[4]))
 
             if gt_bbox[5][0] == "wrong_class":
@@ -63,8 +63,10 @@ for file in files:
 
     print(f"Image: {pathlib.Path(file).absolute()}")
 
-    orig_img = imutils.resize(orig_img, width=416)
-    cv2.imshow("test", orig_img)
+    orig_img2 = imutils.resize(orig_img, width=608)
+    orig_img3 = imutils.resize(orig_img, width=416)
+    cv2.imshow("test", orig_img2)
+    cv2.imshow("test2", orig_img3)
     key = cv2.waitKey(-1)
 
     if key == ord("q"):

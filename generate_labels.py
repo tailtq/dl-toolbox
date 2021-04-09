@@ -3,7 +3,7 @@ import cv2
 
 from utils.object_recognition_common import predict_bboxes, load_model
 
-root_directory = "/home/tailtq/Downloads/test-set"
+root_directory = "/home/william/Downloads/images123/images"
 ignored_regions = [
     # [3, 0.841818, 0.723077, 0.225455, 0.548718],
     # [3, 0.910606, 0.225000, 0.074545, 0.173077],
@@ -18,9 +18,9 @@ ignored_regions_coordinates = list(map(lambda ignored_region: [
 ignored_regions_str = [" ".join([str(x) for x in xs]) for xs in ignored_regions]
 
 if __name__ == "__main__":
-    model = load_model("face-mask-best.pt")
+    model = load_model("best.pt")
 
-    img_paths = sorted(glob.glob(f"{root_directory}/custom_*.jpg"))
+    img_paths = sorted(glob.glob(f"{root_directory}/*.jpg") + glob.glob(f"{root_directory}/*.jpeg") + glob.glob(f"{root_directory}/*.png"))
     total_imgs = len(img_paths)
     # img_paths = list(filter(lambda img_path: not os.path.exists(img_path.replace(".jpg", ".txt")), img_paths))
 
@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
         img_name = img_path.split("/")[-1].split(".")[0]
         img = cv2.imread(img_path)
-        result, orig_img, _ = predict_bboxes(img, model, 800)
+        result, orig_img, _ = predict_bboxes(img, model, 416)
 
         text = ""
         height, width, _ = orig_img.shape
