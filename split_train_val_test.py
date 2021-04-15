@@ -15,13 +15,14 @@ def move_files(files, destination):
     destination += "/"
 
     for file in files:
-        file_name = file.split(".")[0]
-        # xml_file = file_name + ".xml"
-        txt_file = file_name + ".txt"
+        last_segment = file.split("/")[-1]
+        file_name, extension = last_segment.split(".")
 
-        shutil.move(file, destination)
-        # shutil.move(xml_file, destination)
-        shutil.move(txt_file, destination)
+        txt_file = file.split(".")[0] + ".txt"
+        # xml_file = file_name + ".xml"
+
+        shutil.move(file, f"{destination}/{file_name}.{extension}")
+        shutil.move(txt_file, f"{destination}/{file_name}.txt")
 
 
 def separate_dataset(files, total, percent, destination):
@@ -37,14 +38,16 @@ def move_bias_files(file_names, directory, train_dir):
     for file_name in file_names:
         for extension in ["jpg", "jpeg", "png"]:
             file = f"{directory}/{file_name}.{extension}"
+            dest_file = f"{train_dir}/{file_name}.{extension}"
 
             if os.path.exists(file):
-                shutil.move(file, train_dir)
+                shutil.move(file, dest_file)
 
         txt_file = f"{directory}/{file_name}.txt"
+        dest_file = f"{train_dir}/{file_name}.txt"
 
         if os.path.exists(txt_file):
-            shutil.move(txt_file, train_dir)
+            shutil.move(txt_file, dest_file)
         else:
             print(f"{txt_file}: File doesn't exist")
 
