@@ -1,5 +1,6 @@
 import cv2
 import torch
+import numpy as np
 
 from add_ignored_areas import read_n_parse_label
 from utils.general import box_iou
@@ -34,11 +35,9 @@ for ignored_label in ignored_labels:
         not_ignored_y2 = not_ignored_label[2][1]
 
         if iou > 0:
-            not_ignored_x1
-        #     gt_bbox[5][0] = "ok" if bbox[5] == float(gt_bbox[0]) else "wrong_class"
-        #     gt_bbox[5][1] = bbox[5]
-        #     gt_bbox[5][2] = bbox[:4]
-        #     break
+            test1 = np.max([[not_ignored_x1, not_ignored_y1], [ignored_x1, ignored_y1]], axis=0)
+            test2 = np.min([[not_ignored_x2, not_ignored_y2], [ignored_x2, ignored_y2]], axis=0)
+            img[test1[1]:test2[1], test1[0]:test2[0]] = img_copy[test1[1]:test2[1], test1[0]:test2[0]]
 
 cv2.imshow("Test", img)
 cv2.waitKey(-1)
