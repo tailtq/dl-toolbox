@@ -10,7 +10,7 @@ import pathlib
 
 files = get_all_images("dataset/val")
 # files = ["/home/william/Code/machine-learning/dl-toolbox/dataset/val/273271,1ca7500098255e6f.jpg"]
-model = load_model("best-2.pt")
+model = load_model("best.pt")
 classes = ["head", "head_2", "mask"]
 conf = {
     "IMG_RATIO": 0.035,
@@ -20,9 +20,9 @@ conf = {
 for file in files:
     img = cv2.imread(file)
     txt_file = get_file_name_by_img(file)
+    print(txt_file)
 
     bboxes, orig_img, _ = predict_bboxes(img, model, 416)
-    print(len(bboxes))
     gt_bboxes = parse_yolo_format(txt_file, orig_img.shape)
     height, width = orig_img.shape[:2]
 

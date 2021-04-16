@@ -24,7 +24,7 @@ def read_n_parse_label(link, img_shape):
     bboxes = []
 
     for i, line in enumerate(lines):
-        line = [float(e) for e in line.split(" ")]
+        line = [float(e) for e in line.strip().split(" ")]
         line[0] = int(line[0])
 
         tl = line[1] - line[3] / 2, line[2] - line[4] / 2

@@ -86,7 +86,7 @@ def parse_yolo_format(txt_file, img_shape):
     coordinates = []
 
     for line in lines:
-        c, x, y, w, h = line.split(" ")
+        c, x, y, w, h = line.strip().split(" ")
         x, y, w, h = float(x), float(y), float(w), float(h)
         x1, y1 = x - w / 2, y - h / 2
         x2, y2 = x1 + w, y1 + h

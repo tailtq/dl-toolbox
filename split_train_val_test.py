@@ -57,7 +57,7 @@ if __name__ == "__main__":
     val_percent = 0.2
     test_percent = 0.0
 
-    directory = "oke"
+    directory = "dataset-refactor/train"
     patterns = [
         f"{directory}/273271,*.jpg",
         f"{directory}/mak*.png",
@@ -71,37 +71,7 @@ if __name__ == "__main__":
         f"{directory}/custom_cctv4*.jpg",
         f"{directory}/*.jpg",
     ]
-    bias_files = [
-        "custom_qtai_2306",
-        "custom_qtai_3321",
-        "custom_qtai_3510",
-        "custom_qtai_3695",
-        "custom_qtai_3735",
-        "custom_qtai_3788",
-        "custom_qtai_3811",
-        "custom_qtai_3814",
-        "custom_qtai_3817",
-        "custom_qtai_3858",
-        "custom_qtai_3863",
-        "custom_qtai_3899",
-        "custom_qtai_3939",
-        "custom_qtai_3960",
-        "custom_qtai_3972",
-        "custom_qtai_3980",
-        "custom_qtai_4017",
-        "custom_qtai_4039",
-        "custom_qtai_4171",
-        "custom_qtai_4203",
-        "custom_qtai_4205",
-        "custom_qtai_4243",
-        "custom_qtai_4280",
-        "custom_qtai_4355",
-        "custom_qtai_4356",
-        "custom_qtai_4446",
-        "custom_qtai_4507",
-        "custom_qtai_4556",
-        "custom_qtai_4601",
-    ]
+    bias_files = []
 
     training_set_dir = "dataset/train"
     val_set_dir = "dataset/val"
